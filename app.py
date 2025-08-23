@@ -57,9 +57,16 @@ def home():
     return render_template("index.html")
 
 @app.route("/about")
-def home():
+def about():
     return render_template("about.html")
 
+@app.route("/baseconverter", methods=["GET"])
+def baseconverter():
+    return render_template("baseconverter.html")
+
+@app.route("/prime")
+def prime():
+    return render_template("primenumber.html")
 
 @app.route("/curves", methods=["GET", "POST"])
 def curves():
@@ -116,11 +123,6 @@ def curves():
         download_name="curve.png",
         as_attachment=False
     )
-
-
-@app.route("/baseconverter", methods=["GET"])
-def baseconverter():
-    return render_template("baseconverter.html")
 
 
 if __name__ == "__main__":
