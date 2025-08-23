@@ -1,49 +1,12 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kurvenberechnung – Koordinatensystem</title>
-    <link rel="stylesheet" href="/static/styles.css" />
+    <meta charset="UTF-8">
+    <title>Kurvenberechnung</title>
 </head>
 <body>
-  <header>
-    <button type="button" aria-label="Menü öffnen" id="menu-button">≡</button>
-    <nav aria-label="Dateiaktionen">
-      <button type="button" id="export-button">Export</button>
-      <button type="button" id="import-button">Import</button>
-    </nav>
-  </header>
-  <div id="app-layout">
-    <aside id="left-rail" aria-label="Werkzeugleiste">
-      <label>
-        <input type="checkbox" id="toggle-grid" />
-        Grid Settings
-      </label>
-      <label>
-        <input type="checkbox" id="toggle-draw" />
-        Draw curve
-      </label>
-    </aside>
-    <aside id="control-panel" aria-label="Einstellungen und Eingaben">
-      <form id="plot-form">
-        <label for="function-input">f(x)=</label>
-        <input id="function-input" name="function" type="text" autocomplete="off" />
-        <label for="options-input">Optionen / Parameter</label>
-        <textarea id="options-input" name="options" rows="5"></textarea>
-        <button type="submit" id="draw-button">Draw</button>
-      </form>
-      <section id="curve-data">
-        <h2>Curve data</h2>
-        <div id="curve-data-content"></div>
-      </section>
-    </aside>
-    <main id="workspace" aria-label="Plotbereich">
-      <figure id="plot-container">
-        <div id="plot-slot" role="img" aria-label="Leerer Koordinatensystem-Bereich"></div>
-        <figcaption>Plotbereich</figcaption>
-      </figure>
-    </main>
-  </div>
+    <section>
+        <h1>Kurvenberechnung</h1>
+    </section>
 </body>
 </html>
