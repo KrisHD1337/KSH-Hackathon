@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kurvenberechnung – Koordinatensystem</title>
-    <link rel="stylesheet" href="/static/styles.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Kurvenberechnung – Koordinatensystem</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
 </head>
 <body>
-  <header>
+<header>
     <button type="button" aria-label="Menü öffnen" id="menu-button">≡</button>
+    <h1>Kurvenberechnung</h1>
     <nav aria-label="Dateiaktionen">
-      <button type="button" id="export-button">Export</button>
-      <button type="button" id="import-button">Import</button>
+        <button type="button" id="export-button">Export</button>
+        <button type="button" id="import-button">Import</button>
     </nav>
-  </header>
-  <div id="app-layout">
-    <aside id="left-rail" aria-label="Werkzeugleiste">
-      <label>
-        <input type="checkbox" id="toggle-grid" />
-        Grid Settings
-      </label>
-      <label>
-        <input type="checkbox" id="toggle-draw" />
-        Draw curve
-      </label>
-    </aside>
-    <aside id="control-panel" aria-label="Einstellungen und Eingaben">
-      <form id="plot-form">
-        <label for="function-input">f(x)=</label>
-        <input id="function-input" name="function" type="text" autocomplete="off" />
-        <label for="options-input">Optionen / Parameter</label>
-        <textarea id="options-input" name="options" rows="5"></textarea>
-        <button type="submit" id="draw-button">Draw</button>
-      </form>
-      <section id="curve-data">
-        <h2>Curve data</h2>
-        <div id="curve-data-content"></div>
-      </section>
-    </aside>
+</header>
+
+<main id="container">
+    <!-- Side Bar-->
+    <section id="side-bar">
+        <aside id="left-rail" aria-label="Werkzeugleiste">
+            <label>
+                <input type="checkbox" id="toggle-grid"/>
+                Grid Settings
+            </label><br>
+            <label>
+                <input type="checkbox" id="toggle-draw"/>
+                Draw curve
+            </label>
+        </aside>
+        <br>
+        <aside id="control-panel" aria-label="Einstellungen und Eingaben">
+            <form id="plot-form">
+                <label for="function-input">f(x)=</label>
+                <input id="function-input" name="function" type="text" autocomplete="off"/><br><br>
+                <label for="options-input">Optionen / Parameter</label>
+                <textarea id="options-input" name="options" rows="5"></textarea>
+                <button type="submit" id="draw-button">Draw</button>
+            </form>
+            <section id="curve-data">
+                <h2>Curve data</h2>
+                <div id="curve-data-content"></div>
+            </section>
+        </aside>
+    </section>
     <main id="workspace" aria-label="Plotbereich">
-      <figure id="plot-container">
-        <div id="plot-slot" role="img" aria-label="Leerer Koordinatensystem-Bereich"></div>
-        <figcaption>Plotbereich</figcaption>
-      </figure>
+        <figure id="plot-container">
+            <div id="plot-slot" role="img" aria-label="Leerer Koordinatensystem-Bereich"></div>
+            <figcaption>Plotbereich</figcaption>
+        </figure>
     </main>
-  </div>
+
+</main>
 </body>
+<script type="module" src="/static/js/index.js"></script>
 </html>
