@@ -215,11 +215,11 @@ button:focus-visible {
 
 .contact-item {
     display: flex;
-    flex-basis: calc(25% - 20px);
     align-items: center;
     flex-direction: column;
     position: relative;
-    margin: 0 auto;
+    margin: 10px auto;
+    width: 50%;
     box-sizing: border-box;
     justify-content: center;
 }
@@ -333,13 +333,33 @@ button:focus-visible {
     padding: 5px
 }
 
+/* Fertig */
+
+.about-container {
+    justify-content: center;
+    width: 80%;
+}
+
+#about_us_main {
+    background-color: rgba(255, 255, 255, 0.92);
+    margin: 8vh auto;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
 textarea {
     resize: none;
 }
 
+/* index.html */
 #export-button {
     background-color: #f7b801;
 }
+
+
 
 .css_body main {
   display: grid;
@@ -354,7 +374,7 @@ textarea {
   grid-template-columns: 1.2fr 1fr;
   gap: 24px;
   padding: 24px;
-  background: var(--card);
+  background: var(--side);
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
@@ -427,7 +447,7 @@ textarea {
   padding: 0;
   border-radius: 10px;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent);
 }
 
 #revert:hover {
@@ -528,6 +548,7 @@ textarea {
   border-color: var(--success);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 40%, transparent);
 }
+
 #output_number.invalid {
   border-color: var(--danger);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 40%, transparent);
@@ -540,4 +561,8 @@ textarea {
   .nav-menu a {
     color: #e5e7eb;
   }
+}
+
+.input-container {
+
 }
