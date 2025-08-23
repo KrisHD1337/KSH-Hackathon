@@ -94,7 +94,7 @@ function handleSubmit(e?: Event) {
     }
     const sd = smallDivisor(n);
     if (sd !== null && sd !== n) {
-        setMessage(`${n.toString()} ist keine Primzahl. Kleiner Teiler: ${sd.toString()}`, "ok");
+        setMessage(`${n.toString()} ist keine Primzahl. Kleinster Teiler: ${sd.toString()}`, "ok");
         return;
     }
     const prime = isPrimeBig(n);
