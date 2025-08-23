@@ -8,12 +8,18 @@
 </head>
 <body>
 <header>
-    <button type="button" aria-label="Menü öffnen" id="menu-button">≡</button>
-    <h1>Kurvenberechnung</h1>
-    <nav aria-label="Dateiaktionen">
-        <button type="button" id="export-button">Export</button>
-        <button type="button" id="import-button">Import</button>
+    <nav>
+        <button class="hamburger" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-menu">
+            <a href="/primenumber">primenumber</a>
+        </div>
     </nav>
+    <button type="button" id="export-button">Export</button>
+    <h1 id="title">Kurvenberechnung</h1>
 </header>
 
 <main id="container">
@@ -21,12 +27,11 @@
     <section id="side-bar">
         <aside id="left-rail" aria-label="Werkzeugleiste">
             <label>
-                <input type="checkbox" id="toggle-grid"/>
-                Grid Settings
+                <button id="toggle-grid">
+                   Grid Settings
+                </button>
             </label><br>
             <label>
-                <input type="checkbox" id="toggle-draw"/>
-                Draw curve
             </label>
         </aside>
         <br>
@@ -54,4 +59,5 @@
 </main>
 </body>
 <script type="module" src="/static/js/index.js"></script>
+<script type="module" src="/static/js/nav.js"></script>
 </html>
