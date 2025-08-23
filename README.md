@@ -12,7 +12,7 @@ Das Mathe-Tool ist eine Webapp, mit der du aus Datenpunkten oder Formeln Kurven 
 
 ## How to install:
 * Das Repository klonen (```git clone https://github.com/KrisHD1337/KSH-Hackathon-Alpha.git```).
-* Die virtuelle Umgebung mit ```python3.11 -m venv .venv``` und ```source .venv/bin/activate``` aktivieren.
+* Die virtuelle Umgebung mit ```python3 -m venv .venv``` und ```source .venv/bin/activate``` aktivieren.
 * Die requirements.txt mit ```pip install -r requirements.txt``` installieren.
 * Einrichtung um Typescript zu kompilieren zuerst ```npm init -y``` ins Terminal (vom aktuellen Projekt) und dann ```npm install --save-dev typescript```
 * Dann kann ```npx tsc``` ausgeführt werden, damit die typescript files zu Javascript files compiled werden.
