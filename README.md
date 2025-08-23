@@ -26,4 +26,10 @@ ODER
 * Plot erzeugen: Vorschau wird angezeigt; bei Anpassungen aktualisiert sich der Plot.
 * Export: Als PNG herunterladen.
 
+## Developer
+* Jérôme Bachmann
+* Frederik Spirgi
+* Michelle Brändli
+* Kristian Cerni
+
 Keine dauerhafte Speicherung von Nutzerdaten in der Alpha-Version; Berechnungen werden im Arbeitsspeicher durchgeführt. Hochgeladene Dateien werden nur zum Erzeugen des Plots genutzt und anschließend verworfen.
