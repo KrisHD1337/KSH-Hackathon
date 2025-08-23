@@ -10,6 +10,15 @@ def kopfrechnen():
     def ggt(nums):
         return reduce(gcd, nums)
 
+@app.route("/primenumber")
+def primenumber(number):
+        if number <= 1:
+            return False
+        for i in range(2, int(number**0.5)+1):
+            if number % i == 0:
+                return False
+        return True
+
 @app.route("/")
 def home():
     return render_template("index.html")
