@@ -115,73 +115,61 @@ function numberConverter() {
     if (input === "decimal" && output === "binary") {
         document.getElementById("output_number").value = decimalToBinary(num1)
             || 0
-        console.log("Shadow the hedgehog")
     }
 
     if (input === "decimal" && output === "octal") {
         document.getElementById("output_number").value = decimalToOctal(num1)
             || 0
-        console.log("Sonic the hedgehog")
     }
 
     if (input === "decimal" && output === "hexadecimal") {
         document.getElementById("output_number").value = decimalToHexadecimals(num1)
             || 0
-        console.log("Silver the hedgehog")
     }
 
     if (input === "binary" && output === "decimal") {
         document.getElementById("output_number").value = binaryToDecimals(num1)
             || 0
-        console.log("Amy Rose")
     }
 
     if (input === "binary" && output === "octal") {
         let num2 = binaryToDecimals(num1)
         document.getElementById("output_number").value = decimalToOctal(num2) || 0
-        console.log("Knuckles")
     }
 
     if (input === "binary" && output === "hexadecimal") {
         let num2 = binaryToDecimals(num1);  // Wandelt die Binärzahl in Dezimal um
         document.getElementById("output_number").value = decimalToHexadecimals(num2) || 0
-        console.log("Tails")
     }
 
     if (input === "octal" && output === "decimal") {
         document.getElementById("output_number").value = octalToDecimals(num1)
             || 0
-        console.log("Blaze")
     }
 
     if (input === "octal" && output === "binary") {
         let num2 = octalToDecimals(num1)
         document.getElementById("output_number").value = decimalToBinary(num2) || 0
-        console.log("Espio")
     }
 
     if (input === "octal" && output === "hexadecimal") {
         let num2 = octalToDecimals(num1)
         document.getElementById("output_number").value = decimalToHexadecimals(num2) || 0
-        console.log("Big the cat")
     }
 
     if (input === "hexadecimal" && output === "decimal") {
         document.getElementById("output_number").value = hexadecimalToDecimal(num1)
             || 0
-        console.log("Eggman")
     }
 
     if (input === "hexadecimal" && output === "binary") {
         let num2 = hexadecimalToDecimal(num1)
         document.getElementById("output_number").value = decimalToBinary(num2) || 0
-        console.log("Stone")
     }
 
     if (input === "hexadecimal" && output === "octal") {
         let num2 = hexadecimalToDecimal(num1)
         document.getElementById("output_number").value = decimalToOctal(num2) || 0
-        console.log("Cream")
     }
 }
 
@@ -329,7 +317,6 @@ function steps() {
 
     if (input_number !== '' && input_full === false) {
         article.appendChild(newSelection);
-        console.log("shadow")
         input_full = true;
         textarea.parentNode.insertBefore(newSelection, textarea.nextSibling);
 
@@ -347,7 +334,6 @@ function steps() {
         const existingSection = document.getElementById("steps");
         if (existingSection) {
             article.removeChild(existingSection);
-            console.log("shadow removed");
         }
         input_full = false;  // Reset input_full
     }
