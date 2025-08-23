@@ -34,6 +34,8 @@ function parseOptions(raw: string | undefined): Record<string, string> {
     return out;
 }
 
+let lastQueryString: string | null = null;
+
 //ladet den eigentlichen Plot und zeigt ihn an.
 async function renderPlot(e?: Event) {
     e?.preventDefault();
@@ -51,8 +53,11 @@ async function renderPlot(e?: Event) {
     Object.entries(extra).forEach(([k, v]) => params.set(k, v));
     params.set("_ts", String(Date.now()));
     url.search = params.toString();
+    lastQueryString = "?" + new URLSearchParams(Object.fromEntries(
+        [...params.entries()].filter(([k]) => k !== "_ts")
+    )).toString();
     try {
-        const res = await fetch(url.toString(), {method: "GET"});
+        const res = await fetch(url.toString());
         if (!res.ok) {
             const text = await res.text();
             throw new Error(text || `Serverfehler (${res.status})`);
@@ -76,15 +81,6 @@ async function renderPlot(e?: Event) {
     }
 }
 
-async function exportPlot() {
-    const img = document.getElementById("plot-image") as HTMLImageElement;
-    if (!img) {
-        showMessage("Kein Plot vorhanden.");
-        return;
-    }
-
-}
-
 form.addEventListener("submit", renderPlot); //Important: EventListener muss mit addEventListener registriert werden, nicht mit on!!!
 
 fnInput.addEventListener("keydown", (ev: KeyboardEvent) => {
@@ -94,6 +90,38 @@ fnInput.addEventListener("keydown", (ev: KeyboardEvent) => {
     }
 });
 
-exportBtn.addEventListener("click", () => {
-    exportPlot();
-})
+exportBtn.addEventListener("click", async () => {
+  if (!lastQueryString) {
+    alert("Bitte zuerst einen Plot zeichnen.");
+    return;
+  }
+  const url = new URL("/curves", window.location.origin);
+  const params = new URLSearchParams(lastQueryString.slice(1));
+  params.set("download", "1");
+  url.search = params.toString();
+  try {
+    const res = await fetch(url.toString(), { method: "GET" });
+    if (!res.ok) {
+      const txt = await res.text();
+      throw new Error(txt || `Serverfehler (${res.status})`);
+    }
+    const blob = await res.blob();
+    const cd = res.headers.get("Content-Disposition");
+    let filename = "plot.png";
+    if (cd) {
+      const m = /filename\*=UTF-8''([^;]+)|filename="?([^\";]+)"?/i.exec(cd);
+      filename = decodeURIComponent(m?.[1] || m?.[2] || filename);
+    }
+    const href = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = href;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(href), 1000);
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    alert("Download fehlgeschlagen: " + msg);
+  }
+});
