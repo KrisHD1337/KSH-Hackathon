@@ -4,6 +4,7 @@ const gridToggle = document.getElementById("toggle-grid") as HTMLInputElement;
 const plotSlot = document.getElementById("plot-slot") as HTMLDivElement;
 const drawBtn = document.getElementById("draw-button") as HTMLButtonElement;
 const optsTextarea = document.getElementById("options-input") as HTMLTextAreaElement;
+const exportBtn = document.getElementById("export-button") as HTMLButtonElement;
 
 //funktion um Nachrichten im UI anzuzeigen
 function showMessage(text: string) {
@@ -75,6 +76,15 @@ async function renderPlot(e?: Event) {
     }
 }
 
+async function exportPlot() {
+    const img = document.getElementById("plot-image") as HTMLImageElement;
+    if (!img) {
+        showMessage("Kein Plot vorhanden.");
+        return;
+    }
+
+}
+
 form.addEventListener("submit", renderPlot); //Important: EventListener muss mit addEventListener registriert werden, nicht mit on!!!
 
 fnInput.addEventListener("keydown", (ev: KeyboardEvent) => {
@@ -83,3 +93,7 @@ fnInput.addEventListener("keydown", (ev: KeyboardEvent) => {
         renderPlot();
     }
 });
+
+exportBtn.addEventListener("click", () => {
+    exportPlot();
+})

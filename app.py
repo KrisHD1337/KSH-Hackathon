@@ -36,7 +36,7 @@ def kgv(nums):
 def ggt(nums):
     return reduce(gcd, nums)
 
-@app.route("/primenumber")
+@app.route("/primenumber", methods=["GET", "POST"])
 def primenumber(number):
         if number <= 1:
             return False
