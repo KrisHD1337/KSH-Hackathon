@@ -8,6 +8,11 @@
     --border: #f18701;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06);
     --side: #f7b801;
+    --card: #ffffff;
+    --input-bg: #ffffff;
+    --ring: rgba(96, 165, 250, .45);
+    --success: #16a34a;
+    --danger: #ef4444;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +23,8 @@
         --muted: #9ca3af;
         --accent: #60a5fa;
         --border: #1f2937;
+        --card: #0b1222;
+        --input-bg: #0f172a;
     }
 }
 
@@ -327,9 +334,210 @@ button:focus-visible {
 }
 
 textarea {
-  resize: none;
+    resize: none;
 }
 
 #export-button {
     background-color: #f7b801;
+}
+
+.css_body main {
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+#calculator {
+  width: 100%;
+  max-width: 1100px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+#textarea {
+  display: grid;
+  gap: 16px;
+}
+
+#textarea form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+#textarea select,
+#textarea input[type="text"],
+#output_number {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 10px;
+  min-width: 180px;
+  font: inherit;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+  transition: box-shadow .15s ease, border-color .15s ease, background .15s ease, transform .02s ease;
+}
+
+#textarea select {
+  min-width: 160px;
+}
+
+#textarea input[type="text"]:focus-visible,
+#textarea select:focus-visible,
+#output_number:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+#output_number[disabled],
+#textarea input[disabled] {
+  opacity: 0.85;
+  color: var(--muted);
+}
+
+#equal {
+  width: 44px;
+  height: 40px;
+  padding: 0;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+#equal:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+#revert {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 40px;
+  padding: 0;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+#revert:hover {
+  background: rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  #revert:hover {
+    background: rgba(255,255,255,.05);
+  }
+}
+#revert ion-icon {
+  font-size: 20px;
+}
+
+#site_map {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+#site_map h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+#site_map table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#site_map td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+#site_map tr:last-child td {
+  border-bottom: 0;
+}
+
+#site_map td:first-child {
+  width: 130px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+#site_map input {
+  width: 100%;
+  border: 1px dashed var(--border);
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.css_body header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: .2px;
+}
+
+#calculator code,
+#calculator kbd {
+  background: rgba(0,0,0,.05);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  #calculator code,
+  #calculator kbd {
+    background: rgba(255,255,255,.08);
+  }
+}
+
+#textarea select:hover,
+#textarea input[type="text"]:hover {
+  border-color: var(--accent);
+}
+
+#textarea select:active,
+#textarea input[type="text"]:active {
+  transform: translateY(0.5px);
+}
+
+@media (max-width: 1000px) {
+  #calculator {
+    grid-template-columns: 1fr;
+  }
+  #site_map {
+    order: 2;
+  }
+}
+
+#output_number.valid {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 40%, transparent);
+}
+#output_number.invalid {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 40%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-menu {
+    background-color: rgba(17,24,39,.95);
+  }
+  .nav-menu a {
+    color: #e5e7eb;
+  }
 }
