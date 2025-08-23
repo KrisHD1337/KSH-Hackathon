@@ -193,3 +193,7 @@ button:focus-visible {
 .nav-menu.active {
     right: 0;
 }
+
+textarea {
+  resize: none;
+}
