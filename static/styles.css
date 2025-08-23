@@ -1,12 +1,13 @@
 ﻿:root {
     --header-h: 64px;
     --bg: #f6f7fb;
-    --panel: #ffffff;
+    --panel: #f18701;
     --text: #1f2937;
     --muted: #6b7280;
     --accent: #2563eb;
     --border: #e5e7eb;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06);
+    --side: #f7b801;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -86,7 +87,7 @@ button:focus-visible {
 
 #side-bar {
     width: 250px;
-    background: #f0f0f0;
+    background: var(--side);;
     height: 100%;
     padding: 1rem;
 }
@@ -97,11 +98,11 @@ button:focus-visible {
 }
 
 #workspace {
+    background: #ffffff;
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fff;
 }
 
 #plot-container {
@@ -192,4 +193,135 @@ button:focus-visible {
 
 .nav-menu.active {
     right: 0;
+}
+
+/* Github profile */
+.contact-list {
+    flex-wrap: wrap;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    justify-content: center;
+}
+
+.contact-item {
+    display: flex;
+    flex-basis: calc(25% - 20px);
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.contact-link img {
+    border-radius: 50%;
+    width: 215px;
+    height: 215px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.contact-name {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.contact-link {
+    border-radius: 50%;
+    width: 215px;
+    height: 215px;
+    position: relative;
+    overflow: hidden;
+    flex-basis: calc(100% / 4 - 20px);
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    box-sizing: border-box;
+    color: white;
+}
+
+.contact-link .icon {
+    font-family: 'Ionicons', sans-serif;
+    font-size: 1.2rem;
+    position: absolute;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    width: 150px;
+    top: 50%;
+    left: 150%;
+    transform: translate(-50%, -50%);
+    transition: left 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.contact-link:hover .icon {
+    left: 50%;
+}
+
+.contact-link::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 215px;
+    height: 215px;
+    clip-path: circle(50%);
+    transition: left 0.5s ease-in-out;
+    z-index: 0;
+}
+
+.contact-link:hover::before {
+    left: 0;
+}
+
+.content_section {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.time_section {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.impressum {
+    flex-wrap: wrap;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.impressum p {
+    font-size: 0.8rem;
+}
+
+.impressum-item {
+    display: flex;
+    flex-basis: calc(100% / 4 - 20px);
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px
 }

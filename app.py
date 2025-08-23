@@ -56,6 +56,10 @@ def primenumber(number):
 def home():
     return render_template("index.html")
 
+@app.route("/about")
+def home():
+    return render_template("about.html")
+
 
 @app.route("/curves", methods=["GET", "POST"])
 def curves():
