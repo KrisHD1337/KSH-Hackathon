@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
+    "target": "ES2024",
     "outDir": "./static/js",
     "rootDir": "./static/ts",
     "strict": true,
