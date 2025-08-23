@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<style>
+    nav ion-icon {
+        font-size: 1.5rem;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #ffffff;
+        margin-right: 20px;
+        font-weight: bold;
+    }
+
+    main {
+        padding: 20px;
+        text-align: center;
+        flex: 1;
+    }
+
+    .contact-list {
+        flex-wrap: wrap;
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        margin: 0 auto;
+        position: relative;
+        justify-content: center;
+    }
+
+    .contact-item {
+        display: flex;
+        flex-basis: calc(25% - 20px);
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        margin: 0 auto;
+        box-sizing: border-box;
+        justify-content: center;
+    }
+
+    .contact-link img {
+        border-radius: 50%;
+        width: 215px;
+        height: 215px;
+        object-fit: cover;
+        margin: 0 auto;
+    }
+
+    .contact-name {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        margin-bottom: 10px;
+    }
+
+    .contact-link {
+        border-radius: 50%;
+        width: 215px;
+        height: 215px;
+        position: relative;
+        overflow: hidden;
+        flex-basis: calc(100% / 4 - 20px);
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        box-sizing: border-box;
+        color: white;
+    }
+
+    .contact-link .icon {
+        font-family: 'Ionicons', sans-serif;
+        font-size: 1.2rem;
+        position: absolute;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        display: flex;
+        width: 150px;
+        top: 50%;
+        left: 150%;
+        transform: translate(-50%, -50%);
+        transition: left 0.5s ease-in-out;
+        z-index: 1;
+    }
+
+    .contact-link:hover .icon {
+        left: 50%;
+    }
+
+    .contact-link::before {
+        content: "";
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 215px;
+        height: 215px;
+        clip-path: circle(50%);
+        transition: left 0.5s ease-in-out;
+        z-index: 0;
+    }
+
+    .contact-link:hover::before {
+        left: 0;
+    }
+
+    .content_section {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .time_section {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+
+    .impressum {
+        flex-wrap: wrap;
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        justify-content: center;
+    }
+
+    .impressum p {
+        font-size: 0.8rem;
+    }
+
+    .impressum-item {
+        display: flex;
+        flex-basis: calc(100% / 4 - 20px);
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        margin: 0 auto;
+        box-sizing: border-box;
+        text-align: center;
+        padding: 5px
+    }
+
+    body, html {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+</style>
+
+<body>
+<main>
+    <h1>Über diese Webseite</h1>
+    <p>Schüler wollen aus Mess- oder Aufgabedaten schnell Kurven erzeugen, analysieren und exportieren. Unser Tool
+        zeichnet
+        Kurven aus eingefügten Werten, ergänzt Basis-Analysen (z. B. Steigung, Nullstellen-Näherung) und erstellt
+        saubere
+        Grafiken für Abgaben.</p>
+
+    <h1>Unser Ziel</h1>
+    <p>In der Mathematik haben wir Funktionen bearbeitet und wir wollten es nicht jedes Mal selber zeichen, also haben
+        wir
+        diese Webseite erstellt, die ein Graph schnell zeichnen kann.</p>
+
+    <!-- First article: Contact Information -->
+    <h1>Das Team</h1>
+
+    <article>
+        <section class="contact-list">
+            <!-- Paragraphs styled with article section p selector -->
+            <div class="contact-item">
+                <span class="contact-name"><strong>Michelle Brändli</strong></span>
+                <!-- Image styled with main img (inherits global styles) -->
+                <a class="contact-link" href="https://github.com/Miche69" data-hover="logo-github">
+                    <img class="contact-pic" src="https://avatars.githubusercontent.com/u/130926435?v=4"
+                         alt="Bild">
+                    <span class="icon">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </span>
+                </a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-name"><strong>Jérôme Bachmann</strong></span>
+                <a class="contact-link" href="https://github.com/ScriptSorcerer20">
+                    <img class="contact-pic" src="https://avatars.githubusercontent.com/u/172249203?v=4"
+                         alt="Bild">
+                    <span class="icon">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </span>
+                </a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-name"><strong>Frederik Spirgi</strong></span>
+                <a class="contact-link" href="https://github.com/Fretuks">
+                    <img class="contact-pic" src="https://avatars.githubusercontent.com/u/210662800?v=4"
+                         alt="Bild">
+                    <span class="icon">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </span>
+                </a>
+            </div>
+            <div class="contact-item">
+                <span class="contact-name"><strong>Kristian Cerni</strong></span>
+                <a class="contact-link" href="https://github.com/KrisHD1337">
+                    <img class="contact-pic" src="https://avatars.githubusercontent.com/u/165958879?v=4"
+                         alt="Bild">
+                    <span class="icon">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </span>
+                </a>
+            </div>
+        </section>
+    </article>
+</main>
+</body>
+</html>
