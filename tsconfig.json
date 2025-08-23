@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "outDir": "./static/js",
+    "rootDir": "./static/ts",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}
