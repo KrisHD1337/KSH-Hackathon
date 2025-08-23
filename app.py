@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, send_file
 import numpy as np
 import sympy as sp
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sympy.parsing.sympy_parser import (
@@ -19,6 +20,7 @@ transformations = standard_transformations + (
 
 x = sp.symbols('x')
 
+
 def compile_user_function(text: str):
     allowed = {
         'x': x, 'sin': sp.sin, 'cos': sp.cos, 'tan': sp.tan, 'exp': sp.exp,
@@ -28,26 +30,36 @@ def compile_user_function(text: str):
                       local_dict=allowed, evaluate=True)
     return sp.lambdify(x, expr, 'numpy')
 
+
 app = Flask(__name__)
+
 
 def kgv(nums):
     return reduce(lcm, nums)
 
+
 def ggt(nums):
     return reduce(gcd, nums)
 
+
 @app.route("/primenumber", methods=["GET", "POST"])
 def primenumber(number):
-        if number <= 1:
+    if number <= 1:
+        return False
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
             return False
-        for i in range(2, int(number**0.5)+1):
-            if number % i == 0:
-                return False
-        return True
+    return True
+
 
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/about")
+def home():
+    return render_template("about.html")
+
 
 @app.route("/curves", methods=["GET", "POST"])
 def curves():
@@ -61,7 +73,7 @@ def curves():
         samples = int(data.get("samples", 1000))
         show_grid = str(data.get("grid", "0")) in ("1", "true", "True")
         w = int(data.get("w", 1200))  # in pixeln
-        h = int(data.get("h", 800))   # in pixeln
+        h = int(data.get("h", 800))  # in pixeln
         dpi = int(data.get("dpi", 150))
     except (TypeError, ValueError):
         return "Einer der xmin/xmax/samples/w/h/dpi werte ist ungültig.", 400
@@ -104,6 +116,12 @@ def curves():
         download_name="curve.png",
         as_attachment=False
     )
+
+
+@app.route("/baseconverter", methods=["GET"])
+def baseconverter():
+    return render_template("baseconverter.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
