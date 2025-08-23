@@ -1,7 +1,7 @@
 from math import lcm, gcd
 from functools import reduce
 from io import BytesIO
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, jsonify
 import numpy as np
 import sympy as sp
 import matplotlib
@@ -20,6 +20,8 @@ transformations = standard_transformations + (
 
 x = sp.symbols('x')
 
+app = Flask(__name__)
+
 
 def compile_user_function(text: str):
     allowed = {
@@ -31,7 +33,97 @@ def compile_user_function(text: str):
     return sp.lambdify(x, expr, 'numpy')
 
 
-app = Flask(__name__)
+def compute_curve_stats(xs: np.ndarray, ys: np.ndarray):
+    finite = np.isfinite(ys)
+    n_total = int(ys.size)
+    n_valid = int(np.count_nonzero(finite))
+    n_invalid = n_total - n_valid
+    stats = {
+        "samples": n_total,
+        "finite_points": n_valid,
+        "invalid_points": n_invalid,
+        "zeros": [],
+        "extrema": {"maxima": [], "minima": []},
+    }
+    if n_valid == 0:
+        return stats
+    vxs = xs[finite]
+    vys = ys[finite]
+    ymin_idx = int(np.argmin(vys))
+    ymax_idx = int(np.argmax(vys))
+    stats.update({
+        "domain": [float(xs[0]), float(xs[-1])],
+        "y_min": {"x": float(vxs[ymin_idx]), "y": float(vys[ymin_idx])},
+        "y_max": {"x": float(vxs[ymax_idx]), "y": float(vys[ymax_idx])},
+        "mean": float(np.mean(vys)),
+        "median": float(np.median(vys)),
+        "stdev": float(np.std(vys)),
+    })
+    zeros = []
+    for i in range(len(xs) - 1):
+        y0, y1 = ys[i], ys[i + 1]
+        if not (np.isfinite(y0) and np.isfinite(y1)):
+            continue
+        if y0 == 0:
+            zeros.append(float(xs[i]))
+        elif y0 * y1 < 0:
+            x0 = xs[i] - y0 * (xs[i + 1] - xs[i]) / (y1 - y0)
+            zeros.append(float(x0))
+    if zeros:
+        zeros = sorted(zeros)
+        filtered = []
+        eps = (xs[-1] - xs[0]) * 1e-6
+        for z in zeros:
+            if not filtered or abs(z - filtered[-1]) > eps:
+                filtered.append(z)
+        zeros = filtered[:20]
+    stats["zeros"] = zeros
+    if len(vxs) >= 3:
+        d = np.gradient(vys, vxs)
+        s = np.sign(d)
+        for i in range(1, len(s)):
+            if s[i - 1] > 0 > s[i]:
+                stats["extrema"]["maxima"].append(
+                    {"x": float(vxs[i]), "y": float(vys[i])}
+                )
+            if s[i - 1] < 0 < s[i]:
+                stats["extrema"]["minima"].append(
+                    {"x": float(vxs[i]), "y": float(vys[i])}
+                )
+        stats["extrema"]["maxima"] = stats["extrema"]["maxima"][:10]
+        stats["extrema"]["minima"] = stats["extrema"]["minima"][:10]
+    return stats
+
+
+@app.route("/curves/stats", methods=["GET"])
+def curves_stats():
+    data = request.get_json(silent=True) if request.is_json else request.args
+    expr_text = (data.get("f") or data.get("function") or "").strip()
+    if not expr_text:
+        return jsonify({"error": "Parameter 'f' fehlt (der Funktionsausdruck)."}), 400
+    try:
+        xmin = float(data.get("xmin", -10))
+        xmax = float(data.get("xmax", 10))
+        samples = int(data.get("samples", 1000))
+    except (TypeError, ValueError):
+        return jsonify({"error": "Einer der xmin/xmax/samples Werte ist ungültig."}), 400
+    if xmax <= xmin:
+        return jsonify({"error": "'xmax' muss grösser sein als 'xmin'."}), 400
+    samples = max(10, min(samples, 20000))
+    try:
+        f = compile_user_function(expr_text)
+    except Exception as e:
+        return jsonify({"error": f"Ausdruck konnte nicht gelesen werden: {e}"}), 400
+    xs = np.linspace(xmin, xmax, samples, dtype=float)
+    with np.errstate(all="ignore"):
+        ys = np.asarray(f(xs), dtype=float)
+    if ys.shape != xs.shape:
+        return jsonify({"error": "Der Ausdruck liefert kein 1D-Array der Länge samples."}), 400
+    stats = compute_curve_stats(xs, ys)
+    stats["expression"] = expr_text
+    stats["xmin"] = xmin
+    stats["xmax"] = xmax
+    return jsonify(stats)
 
 
 def kgv(nums):
@@ -56,17 +148,21 @@ def primenumber(number):
 def home():
     return render_template("index.html")
 
+
 @app.route("/about")
 def about():
     return render_template("about.html")
+
 
 @app.route("/baseconverter", methods=["GET"])
 def baseconverter():
     return render_template("baseconverter.html")
 
+
 @app.route("/prime")
 def prime():
     return render_template("primenumber.html")
+
 
 @app.route("/curves", methods=["GET", "POST"])
 def curves():
