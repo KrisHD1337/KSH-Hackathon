@@ -2,7 +2,7 @@
   "name": "ksh-hackathon",
   "version": "1.0.0",
   "description": "Schüler wollen aus Mess- oder Aufgabedaten schnell Kurven erzeugen, analysieren und exportieren. Unser Tool zeichnet Kurven aus eingefügten Werten, ergänzt Basis-Analysen (z. B. Steigung, Nullstellen-Näherung) und erstellt saubere Grafiken für Abgaben.",
-  "main": "index.html",
+  "main": "templates/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
