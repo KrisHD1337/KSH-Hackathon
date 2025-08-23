@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+    <meta charset="utf-8">
+    <title>BaseConverter</title>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<style>
+    .diva {
+        align-content: center;
+        align-items: center;
+        padding: 5px;
+        margin: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 30%;
+        text-align: center;
+        color: white;
+        border: #0d2f5a 1px solid;
+        border-radius: 10px;
+        background-color: #17569b;
+    }
+
+    header {
+        background-color: #114477;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    select, input {
+        border-radius: 10px;
+        width: 120px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border: none;
+        padding: 10px;
+        background-color: white;
+        border-bottom: #0d2f5a 1px solid;
+        color: #0d2f5a;
+    }
+
+    #revert {
+        padding: 10px;
+        border: none;
+        background-color: white;
+        color: #0d2f5a;
+        border-radius: 10px;
+        border-bottom: #0d2f5a 1px solid;
+    }
+
+    #equal {
+        background-color: #17569b;
+        color: white;
+        border: none;
+    }
+</style>
+
+<body>
+<div class="diva">
+    <header>
+        <h1>Number Base Converter</h1>
+    </header>
+
+    <main>
+        <article id="calculator">
+            <section id="textarea">
+                <form>
+                    <label for="input"></label>
+                    <select name="input" onchange="applyInputValidation(this.value); steps(); updateOutputOptions()" id="input">
+                        <option value="decimal" selected>decimal</option>
+                        <option value="binary">binary</option>
+                        <option value="octal">octal</option>
+                        <option value="hexadecimal">hexadecimal</option>
+                    </select>
+                    <button id="revert" onclick="reverseInput()">
+                        <ion-icon name="sync"></ion-icon>
+                    </button>
+                    <label for="output"></label>
+                    <select name="output" id="output">
+                        <option value="decimal">decimal</option>
+                        <option value="binary" selected>binary</option>
+                        <option value="octal">octal</option>
+                        <option value="hexadecimal">hexadecimal</option>
+                    </select>
+                    <br><br>
+                </form>
+                <form>
+                    <label for="input_number"></label>
+                    <input type="text" id="input_number" name="input" oninput="numberConverter(); steps(); site_map()">
+                    <button id="equal" disabled>=</button>
+                    <label for="output_number"></label>
+                    <input type="text" id="output_number" name="output_number" disabled><br><br>
+                </form>
+            </section>
+            <section id="site_map">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h2>
+                                Site Map:
+                            </h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Decimal:
+                        </td>
+                        <td>
+                            <form>
+                                <label for="decimal"> </label>
+                                <input id="decimal" disabled onload="site_map()">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Binary:
+                        </td>
+                        <td>
+                            <form>
+                                <label for="binary"> </label>
+                                <input id="binary" disabled onload="numberConverter()">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Octal:
+                        </td>
+                        <td>
+                            <form>
+                                <label for="octal"> </label>
+                                <input id="octal" disabled onload="numberConverter()">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Hexadecimal:
+                        </td>
+                        <td>
+                            <form>
+                                <label for="hexadecimal"> </label>
+                                <input id="hexadecimal" disabled onload="numberConverter()">
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+    </main>
+</div>
+<footer>
+</footer>
+</body>
+</html>
