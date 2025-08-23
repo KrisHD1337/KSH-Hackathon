@@ -11,5 +11,14 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.9.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrisHD1337/KSH-Hackathon.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KrisHD1337/KSH-Hackathon/issues"
+  },
+  "homepage": "https://github.com/KrisHD1337/KSH-Hackathon#readme"
 }
