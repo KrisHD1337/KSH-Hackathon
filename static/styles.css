@@ -329,3 +329,7 @@ button:focus-visible {
 textarea {
   resize: none;
 }
+
+#export-button {
+    background-color: #f7b801;
+}
