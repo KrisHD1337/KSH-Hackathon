@@ -1,5 +1,13 @@
+from math import lcm, gcd
+from functools import reduce
 from flask import Flask, render_template, request, url_for, redirect, send_file, session, current_app, flash
 app = Flask(__name__)
+
+def kgv(nums):
+    return reduce(lcm, nums)
+
+def ggt(nums):
+    return reduce(gcd, nums)
 
 @app.route("/")
 def home():
